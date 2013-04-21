@@ -7,12 +7,7 @@ No checked exceptions, no dependancies. Works with Java SE6 or newer.
 
 This repository can be checked out as an eclipse project. Running it will run all the packaged examples.
 
-Conversions supported:
-Bytes and Bits
-Volume
-Temperaure
-Time
-Distance
+Conversions supported: Bytes and Bits, Volume, Temperaure, Time, Distance
 
 Examples:
 
