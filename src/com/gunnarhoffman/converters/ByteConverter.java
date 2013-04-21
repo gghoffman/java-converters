@@ -5,14 +5,19 @@ import java.math.BigInteger;
 import java.security.InvalidParameterException;
 
 /**
- * 
+ * This class aides in conversion between all the various byte and bit
+ * increments. The highest understood value for this class is a Terabyte. While
+ * it supports values well into the range of Petabytes all sizes above a
+ * Terabyte will be reported as a number Terabytes. Negative values are not
+ * supported except for use with the add* methods assuming it does not produce a
+ * completely nagtive value for the current byte sum.
  * 
  * @author Gunnar Hoffman
  * 
  */
 public class ByteConverter {
 
-	private BigDecimal bytes;
+	// Constants
 
 	private static final BigDecimal tenTwentyFourToTheFourth = new BigDecimal(
 			"1099511627776");
@@ -24,11 +29,32 @@ public class ByteConverter {
 			"1024");
 	private static final BigDecimal eight = new BigDecimal("8");
 
+	// Instance fields
+
+	private BigDecimal bytes;
+
+	// Constructors
+
 	private ByteConverter(BigDecimal bytes) {
 		this.setBytes(bytes);
 	}
 
-	private final ByteConverter setBytes(BigDecimal number) {
+	/**
+	 * Sets the raw byte value in the underlying data source for this class.
+	 * 
+	 * This method is final to protect the constructor from undefined behavior
+	 * should this class be extended.
+	 * 
+	 * In the event a negative number is passed into this function a runtime
+	 * exception of the type InvalidParameterException will be thrown. All
+	 * static methods on this object indirectly call this method and therfor can
+	 * also throw this exception.
+	 * 
+	 * @param number
+	 *            The number of bytes to opperate over.
+	 * @return An instance of this class containing the byte number.
+	 */
+	public final ByteConverter setBytes(BigDecimal number) {
 		if (number.signum() == -1) {
 			throw new InvalidParameterException(
 					"negative bytes makes no sense!");
