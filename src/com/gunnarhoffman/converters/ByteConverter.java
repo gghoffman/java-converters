@@ -1,90 +1,247 @@
 package com.gunnarhoffman.converters;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.security.InvalidParameterException;
+
+/**
+ * 
+ * 
+ * @author Gunnar Hoffman
+ * 
+ */
 public class ByteConverter {
 
-	private long bytes;
+	private BigDecimal bytes;
 
-	private ByteConverter(long bytes) {
-		this.bytes = bytes;
+	private static final BigDecimal tenTwentyFourToTheFourth = new BigDecimal(
+			"1099511627776");
+	private static final BigDecimal tenTwentyFourToTheThird = new BigDecimal(
+			"1073741824");
+	private static final BigDecimal tenTwentyFourToTheSecond = new BigDecimal(
+			"1048576");
+	private static final BigDecimal tenTwentyFourToTheFirst = new BigDecimal(
+			"1024");
+	private static final BigDecimal eight = new BigDecimal("8");
+
+	private ByteConverter(BigDecimal bytes) {
+		this.setBytes(bytes);
+	}
+
+	private final ByteConverter setBytes(BigDecimal number) {
+		if (number.signum() == -1) {
+			throw new InvalidParameterException(
+					"negative bytes makes no sense!");
+		}
+		this.bytes = number;
+		return this;
+	}
+
+	// Byte initializers
+
+	public static ByteConverter fromTerabytes(double terabytes) {
+
+		return ByteConverter.fromTerabytes(new BigDecimal(
+				Double.toString(terabytes)));
+	}
+
+	public static ByteConverter fromTerabytes(BigDecimal terabytes) {
+
+		BigDecimal calculator = new BigDecimal(terabytes.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheFourth);
+		return new ByteConverter(calculator);
 	}
 
 	public static ByteConverter fromGigabytes(double gigabytes) {
-		return new ByteConverter((long) (1024 * 1024 * 1024 * gigabytes));
+
+		return ByteConverter.fromGigabytes(new BigDecimal(
+				Double.toString(gigabytes)));
+	}
+
+	public static ByteConverter fromGigabytes(BigDecimal gigabytes) {
+
+		BigDecimal calculator = new BigDecimal(gigabytes.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheThird);
+		return new ByteConverter(calculator);
 	}
 
 	public static ByteConverter fromMegabytes(double megabytes) {
-		return new ByteConverter((long) (1024 * 1024 * megabytes));
+
+		return ByteConverter.fromMegabytes(new BigDecimal(
+				Double.toString(megabytes)));
 	}
 
-	public static ByteConverter fromKilobytes(double killobytes) {
-		return new ByteConverter((long) (1024 * killobytes));
+	public static ByteConverter fromMegabytes(BigDecimal megabytes) {
+
+		BigDecimal calculator = new BigDecimal(megabytes.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheSecond);
+		return new ByteConverter(calculator);
+	}
+
+	public static ByteConverter fromKilobytes(double kilobytes) {
+
+		return ByteConverter.fromKilobytes(new BigDecimal(
+				Double.toString(kilobytes)));
+	}
+
+	public static ByteConverter fromKilobytes(BigDecimal kilobytes) {
+
+		BigDecimal calculator = new BigDecimal(kilobytes.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheFirst);
+		return new ByteConverter(calculator);
 	}
 
 	public static ByteConverter fromBytes(long bytes) {
-		return new ByteConverter(bytes);
+		return ByteConverter.fromBytes(new BigDecimal(Long.toString(bytes)));
 	}
 
-	public static ByteConverter fromGigabits(double gigabytes) {
-		return new ByteConverter((long) (1024 * 1024 * 1024 * gigabytes) / 8);
+	public static ByteConverter fromBytes(BigDecimal bytes) {
+		return new ByteConverter(new BigDecimal(bytes.toString()));
 	}
 
-	public static ByteConverter fromMegabits(double megabytes) {
-		return new ByteConverter((long) (1024 * 1024 * megabytes) / 8);
+	// Bit initializers
+
+	public static ByteConverter fromTerabits(double terabits) {
+
+		return ByteConverter.fromTerabits(new BigDecimal(
+				Double.toString(terabits)));
 	}
 
-	public static ByteConverter fromKilobits(double killobytes) {
-		return new ByteConverter((long) (1024 * killobytes) / 8);
+	public static ByteConverter fromTerabits(BigDecimal terabits) {
+
+		BigDecimal calculator = new BigDecimal(terabits.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheFourth);
+		calculator = calculator.divide(ByteConverter.eight);
+		return new ByteConverter(calculator);
 	}
+
+	public static ByteConverter fromGigabits(double gigabits) {
+
+		return ByteConverter.fromGigabits(new BigDecimal(
+				Double.toString(gigabits)));
+	}
+
+	public static ByteConverter fromGigabits(BigDecimal gigabits) {
+
+		BigDecimal calculator = new BigDecimal(gigabits.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheThird);
+		calculator = calculator.divide(ByteConverter.eight);
+		return new ByteConverter(calculator);
+	}
+
+	public static ByteConverter fromMegabits(double megabits) {
+
+		return ByteConverter.fromMegabits(new BigDecimal(
+				Double.toString(megabits)));
+	}
+
+	public static ByteConverter fromMegabits(BigDecimal megabits) {
+
+		BigDecimal calculator = new BigDecimal(megabits.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheSecond);
+		calculator = calculator.divide(ByteConverter.eight);
+		return new ByteConverter(calculator);
+	}
+
+	public static ByteConverter fromKilobits(double kilobits) {
+		return ByteConverter.fromKilobits(new BigDecimal(
+				Double.toString(kilobits)));
+	}
+
+	public static ByteConverter fromKilobits(BigDecimal kilobits) {
+
+		BigDecimal calculator = new BigDecimal(kilobits.toString());
+		calculator = calculator.multiply(ByteConverter.tenTwentyFourToTheFirst);
+		calculator = calculator.divide(ByteConverter.eight);
+		return new ByteConverter(calculator);
+	}
+
+	// Addition and (via the use of negative numbers) subtraction
 
 	public ByteConverter addBytes(long bytes) {
-		this.bytes += bytes;
+		this.setBytes(this.bytes.add(new BigDecimal(bytes)));
 		return this;
 	}
-	
-	// TODO More add methods
 
-	public long toBytes() {
-		return this.bytes;
+	public ByteConverter addKilobytes(double kilobytes) {
+		this.setBytes(this.bytes.add(new BigDecimal(kilobytes).multiply(ByteConverter.tenTwentyFourToTheFirst)));
+		return this;
 	}
 
-	public double toKilobytes() {
-		return this.bytes / 1024.0;
+	public ByteConverter addMegabytes(double megabytes) {
+		this.setBytes(this.bytes.add(new BigDecimal(megabytes).multiply(ByteConverter.tenTwentyFourToTheSecond)));
+		return this;
 	}
 
-	public double toMegabytes() {
-		return this.bytes / 1024.0 / 1024.0;
+	public ByteConverter addGigabytes(double gigabytes) {
+		this.setBytes(this.bytes.add(new BigDecimal(gigabytes).multiply(ByteConverter.tenTwentyFourToTheThird)));
+		return this;
 	}
 
-	public double toGigabytes() {
-		return this.bytes / 1024.0 / 1024.0 / 1024.0;
+	public ByteConverter addTerabytes(double terabytes) {
+		this.setBytes(this.bytes.add(new BigDecimal(terabytes).multiply(ByteConverter.tenTwentyFourToTheFourth)));
+		return this;
 	}
 
-	public double toKilobits() {
-		return (this.bytes / 1024.0) * 8;
+	// Output as bytes
+
+	public BigInteger toBytes() {
+		return this.bytes.toBigInteger();
 	}
 
-	public double toMegabits() {
-		return (this.bytes / 1024.0 / 1024.0) * 8;
+	public BigDecimal toKilobytes() {
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFirst);
 	}
 
-	public double toGigabits() {
-		return (this.bytes / 1024.0 / 1024.0 / 1024.0) * 8;
+	public BigDecimal toMegabytes() {
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheSecond);
 	}
+
+	public BigDecimal toGigabytes() {
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheThird);
+	}
+
+	public BigDecimal toTerabytes() {
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFourth);
+	}
+
+	// Output as bits
+
+	public BigDecimal toKilobits() {
+		return this.toKilobytes().divide(ByteConverter.eight);
+	}
+
+	public BigDecimal toMegabits() {
+		return this.toMegabytes().divide(ByteConverter.eight);
+	}
+
+	public BigDecimal toGigabits() {
+		return this.toGigabytes().divide(ByteConverter.eight);
+	}
+
+	public BigDecimal toTerabits() {
+		return this.toTerabytes().divide(ByteConverter.eight);
+	}
+
+	// Output as a String
 
 	@Override
 	public String toString() {
-		double value;
-		if ((value = this.toGigabytes()) > 1) {
-			return String.format("%.2f GB", value);
 
-		} else if ((value = this.toMegabytes()) > 1) {
-			return String.format("%.2f MB", value);
+		if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFourth) >= 0) {
+			return String.format("%.2f TB", this.toTerabytes().doubleValue());
 
-		} else if ((value = this.toKilobytes()) > 1) {
-			return String.format("%.2f KB", value);
+		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheThird) >= 0) {
+			return String.format("%.2f GB", this.toGigabytes().doubleValue());
+
+		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheSecond) >= 0) {
+			return String.format("%.2f MB", this.toMegabytes().doubleValue());
+
+		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFirst) >= 0) {
+			return String.format("%.2f KB", this.toKilobytes().doubleValue());
 
 		} else {
-			return String.format("%d B", this.bytes);
+			return String.format("%d B", this.bytes.intValue());
 		}
 	}
 }
