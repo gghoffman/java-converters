@@ -10,7 +10,7 @@ import java.security.InvalidParameterException;
  * it supports values well into the range of Petabytes all sizes above a
  * Terabyte will be reported as a number Terabytes. Negative values are not
  * supported except for use with the add* methods assuming it does not produce a
- * completely nagtive value for the current byte sum.
+ * completely negative value for the current byte sum.
  * 
  * @author Gunnar Hoffman
  * 
