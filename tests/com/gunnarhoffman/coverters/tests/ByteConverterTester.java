@@ -11,6 +11,6 @@ public final class ByteConverterTester {
 	@Test
 	public void testBytesToBytes() {
 		final long in = 1264978;
-		Assert.assertEquals(ByteConverter.fromBytes(in).toBytes(), in);
+		Assert.assertEquals(ByteConverter.fromBytes(in).toBytes().longValue(), in);
 	}
 }
