@@ -47,11 +47,11 @@ public class ByteConverter {
 	 * 
 	 * In the event a negative number is passed into this function a runtime
 	 * exception of the type InvalidParameterException will be thrown. All
-	 * static methods on this object indirectly call this method and therfor can
+	 * static methods on this object indirectly call this method and therefor can
 	 * also throw this exception.
 	 * 
 	 * @param number
-	 *            The number of bytes to opperate over.
+	 *            The number of bytes to operate over.
 	 * @return An instance of this class containing the byte number.
 	 */
 	public final ByteConverter setBytes(BigDecimal number) {
