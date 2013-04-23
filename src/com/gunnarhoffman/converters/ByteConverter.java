@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.security.InvalidParameterException;
 
 /**
- * This class aides in conversion between all the various byte and bit
+ * This class aids in conversion between all the various byte and bit
  * increments. The highest understood value for this class is a Terabyte. While
  * it supports values well into the range of Petabytes all sizes above a
  * Terabyte will be reported as a number Terabytes. Negative values are not
