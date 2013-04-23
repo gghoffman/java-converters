@@ -222,37 +222,45 @@ public class ByteConverter {
 	}
 
 	public BigDecimal toKilobytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFirst);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFirst, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toMegabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheSecond);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheSecond, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toGigabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheThird);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheThird, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toTerabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFourth);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFourth, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	// Output as bits
 
 	public BigDecimal toKilobits() {
-		return this.toKilobytes().divide(ByteConverter.eight);
+		return this.toKilobytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toMegabits() {
-		return this.toMegabytes().divide(ByteConverter.eight);
+		return this.toMegabytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toGigabits() {
-		return this.toGigabytes().divide(ByteConverter.eight);
+		return this.toGigabytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toTerabits() {
-		return this.toTerabytes().divide(ByteConverter.eight);
+		return this.toTerabytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	// Output as a String
@@ -261,16 +269,20 @@ public class ByteConverter {
 	public String toString() {
 
 		if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFourth) >= 0) {
-			return String.format("%.2f TB", this.toTerabytes().doubleValue());
+			return String.format("%.2f TB", this.toTerabytes()
+												.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheThird) >= 0) {
-			return String.format("%.2f GB", this.toGigabytes().doubleValue());
+			return String.format("%.2f GB", this.toGigabytes()
+												.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheSecond) >= 0) {
-			return String.format("%.2f MB", this.toMegabytes().doubleValue());
+			return String.format("%.2f MB", this.toMegabytes()
+												.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFirst) >= 0) {
-			return String.format("%.2f KB", this.toKilobytes().doubleValue());
+			return String.format("%.2f KB", this.toKilobytes()
+												.doubleValue());
 
 		} else {
 			return String.format("%d B", this.bytes.intValue());
