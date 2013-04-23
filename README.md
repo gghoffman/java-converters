@@ -5,7 +5,7 @@ This libraries facilitates the fast and easy conversion between various types of
 
 No checked exceptions, no dependancies. Works with Java SE6 or newer.
 
-This repository can be checked out as an Eclipse project or an IntelliJ project. Running it will run all the packaged examples.
+This repository can be checked out as an Eclipse or an IntelliJ project. Running it will run all the packaged examples.
 
 Conversions supported: Bytes and Bits, Volume, Temperaure, Time, Distance
 

@@ -8,7 +8,7 @@ import java.security.InvalidParameterException;
  * This class aids in conversion between all the various byte and bit
  * increments. The highest understood value for this class is a Terabyte. While
  * it supports values well into the range of Petabytes all sizes above a
- * Terabyte will be reported as a number Terabytes. Negative values are not
+ * Terabyte will be reported as a number of Terabytes. Negative values are not
  * supported except for use with the add* methods assuming it does not produce a
  * completely negative value for the current byte sum.
  * 
@@ -40,15 +40,21 @@ public class ByteConverter {
 	}
 
 	/**
+	 * <p>
 	 * Sets the raw byte value in the underlying data source for this class.
+	 * </p>
 	 * 
+	 * <p>
 	 * This method is final to protect the constructor from undefined behavior
 	 * should this class be extended.
+	 * </p>
 	 * 
+	 * <p>
 	 * In the event a negative number is passed into this function a runtime
 	 * exception of the type InvalidParameterException will be thrown. All
 	 * static methods on this object indirectly call this method and therefor can
 	 * also throw this exception.
+	 * </p>
 	 * 
 	 * @param number
 	 *            The number of bytes to operate over.
@@ -216,37 +222,45 @@ public class ByteConverter {
 	}
 
 	public BigDecimal toKilobytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFirst);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFirst, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toMegabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheSecond);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheSecond, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toGigabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheThird);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheThird, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toTerabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFourth);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFourth, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	// Output as bits
 
 	public BigDecimal toKilobits() {
-		return this.toKilobytes().divide(ByteConverter.eight);
+		return this.toKilobytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toMegabits() {
-		return this.toMegabytes().divide(ByteConverter.eight);
+		return this.toMegabytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toGigabits() {
-		return this.toGigabytes().divide(ByteConverter.eight);
+		return this.toGigabytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toTerabits() {
-		return this.toTerabytes().divide(ByteConverter.eight);
+		return this.toTerabytes()
+					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	// Output as a String
@@ -255,16 +269,20 @@ public class ByteConverter {
 	public String toString() {
 
 		if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFourth) >= 0) {
-			return String.format("%.2f TB", this.toTerabytes().doubleValue());
+			return String.format("%.2f TB", this.toTerabytes()
+												.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheThird) >= 0) {
-			return String.format("%.2f GB", this.toGigabytes().doubleValue());
+			return String.format("%.2f GB", this.toGigabytes()
+												.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheSecond) >= 0) {
-			return String.format("%.2f MB", this.toMegabytes().doubleValue());
+			return String.format("%.2f MB", this.toMegabytes()
+												.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFirst) >= 0) {
-			return String.format("%.2f KB", this.toKilobytes().doubleValue());
+			return String.format("%.2f KB", this.toKilobytes()
+												.doubleValue());
 
 		} else {
 			return String.format("%d B", this.bytes.intValue());
