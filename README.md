@@ -1,7 +1,7 @@
 java-converters
 ===============
 
-This libraries facilitates the fast and easy conversion between various types of measurement.
+This library facilitates the fast and easy conversion between various types of measurement.
 
 No checked exceptions, no dependencies. Works with Java SE6 or newer.
 
