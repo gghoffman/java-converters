@@ -192,35 +192,35 @@ public class TimeConverter {
 
 		if (this.microseconds.compareTo(TimeConverter.microsecondToYear) >= 0) {
 			return String.format("%.2f Years", this.toYears()
-													.doubleValue());
+					.doubleValue());
 
 		} else if (this.microseconds.compareTo(TimeConverter.microsecondToWeek) >= 0) {
 			return String.format("%.2f Weeks", this.toWeeks()
-													.doubleValue());
+					.doubleValue());
 
 		} else if (this.microseconds.compareTo(TimeConverter.microsecondToDay) >= 0) {
 			return String.format("%.2f Days", this.toDays()
-													.doubleValue());
+					.doubleValue());
 
 		} else if (this.microseconds.compareTo(TimeConverter.microsecondToHour) >= 0) {
 			return String.format("%.2f Hours", this.toHours()
-													.doubleValue());
+					.doubleValue());
 
 		} else if (this.microseconds.compareTo(TimeConverter.microsecondToMinute) >= 0) {
 			return String.format("%.2f Minutes", this.toMinutes()
-														.doubleValue());
+					.doubleValue());
 
 		} else if (this.microseconds.compareTo(TimeConverter.microsecondToSecond) >= 0) {
 			return String.format("%.2f Seconds", this.toSeconds()
-														.doubleValue());
+					.doubleValue());
 
 		} else if (this.microseconds.compareTo(TimeConverter.microsecondToMillisecond) >= 0) {
 			return String.format("%.2f Milliseconds", this.toMicroseconds()
-															.doubleValue());
+					.doubleValue());
 
 		} else {
 			return String.format("%l Microseconds", this.toYears()
-														.doubleValue());
+					.doubleValue());
 		}
 	}
 }

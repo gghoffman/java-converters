@@ -245,22 +245,22 @@ public class ByteConverter {
 
 	public BigDecimal toKilobits() {
 		return this.toKilobytes()
-					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toMegabits() {
 		return this.toMegabytes()
-					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toGigabits() {
 		return this.toGigabytes()
-					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toTerabits() {
 		return this.toTerabytes()
-					.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	// Output as a String
@@ -270,19 +270,19 @@ public class ByteConverter {
 
 		if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFourth) >= 0) {
 			return String.format("%.2f TB", this.toTerabytes()
-												.doubleValue());
+					.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheThird) >= 0) {
 			return String.format("%.2f GB", this.toGigabytes()
-												.doubleValue());
+					.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheSecond) >= 0) {
 			return String.format("%.2f MB", this.toMegabytes()
-												.doubleValue());
+					.doubleValue());
 
 		} else if (this.bytes.compareTo(ByteConverter.tenTwentyFourToTheFirst) >= 0) {
 			return String.format("%.2f KB", this.toKilobytes()
-												.doubleValue());
+					.doubleValue());
 
 		} else {
 			return String.format("%d B", this.bytes.intValue());
