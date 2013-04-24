@@ -14,9 +14,9 @@ public abstract class DistanceConverter {
 
 	private BigDecimal unit;
 
-	public static class MetericDistanceConverter extends DistanceConverter {
+	public static class MetricDistanceConverter extends DistanceConverter {
 
-		private MetericDistanceConverter(BigDecimal micrometers) {
+		private MetricDistanceConverter(BigDecimal micrometers) {
 			this.setUnit(micrometers);
 		}
 
@@ -67,7 +67,7 @@ public abstract class DistanceConverter {
 	}
 
 	public static DistanceConverter fromMicroMeters(BigDecimal micrometers) {
-		return new MetericDistanceConverter(micrometers);
+		return new MetricDistanceConverter(micrometers);
 	}
 
 	public static DistanceConverter fromInches(BigDecimal inches) {
