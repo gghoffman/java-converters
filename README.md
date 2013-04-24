@@ -1,13 +1,13 @@
 java-converters
 ===============
 
-This libraries facilitates the fast and easy conversion between various types of measurement.
+This library facilitates the fast and easy conversion between various types of measurement.
 
-No checked exceptions, no dependancies. Works with Java SE6 or newer.
+No checked exceptions, no dependencies. Works with Java SE6 or newer.
 
 This repository can be checked out as an Eclipse or an IntelliJ project. Running it will run all the packaged examples.
 
-Conversions supported: Bytes and Bits, Volume, Temperaure, Time, Distance
+Conversions supported: Bytes and Bits, Volume, Temperature, Time, Distance
 
 Examples:
 
