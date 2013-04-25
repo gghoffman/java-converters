@@ -19,6 +19,9 @@ public class ByteConverter {
 
 	// Constants
 
+	private static final int DEFAULT_SCALE = 100;
+	private static final int DEFAULT_ROUNDING_MODE = BigDecimal.ROUND_HALF_UP;
+
 	private static final BigDecimal tenTwentyFourToTheFourth = new BigDecimal(
 			"1099511627776");
 	private static final BigDecimal tenTwentyFourToTheThird = new BigDecimal(
@@ -39,6 +42,8 @@ public class ByteConverter {
 		this.setBytes(bytes);
 	}
 
+	// Setters
+
 	/**
 	 * <p>
 	 * Sets the raw byte value in the underlying data source for this class.
@@ -52,8 +57,8 @@ public class ByteConverter {
 	 * <p>
 	 * In the event a negative number is passed into this function a runtime
 	 * exception of the type InvalidParameterException will be thrown. All
-	 * static methods on this object indirectly call this method and therefor can
-	 * also throw this exception.
+	 * static methods on this object indirectly call this method and therefor
+	 * can also throw this exception.
 	 * </p>
 	 * 
 	 * @param number
@@ -222,45 +227,49 @@ public class ByteConverter {
 	}
 
 	public BigDecimal toKilobytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFirst, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFirst,
+				DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
 	}
 
 	public BigDecimal toMegabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheSecond, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheSecond,
+				DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
 	}
 
 	public BigDecimal toGigabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheThird, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheThird,
+				DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
 	}
 
 	public BigDecimal toTerabytes() {
-		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFourth, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.bytes.divide(ByteConverter.tenTwentyFourToTheFourth,
+				DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
 	}
 
 	// Output as bits
 
 	public BigDecimal toKilobits() {
 		return this.toKilobytes()
-				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, DEFAULT_SCALE,
+						DEFAULT_ROUNDING_MODE);
 	}
 
 	public BigDecimal toMegabits() {
 		return this.toMegabytes()
-				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, DEFAULT_SCALE,
+						DEFAULT_ROUNDING_MODE);
 	}
 
 	public BigDecimal toGigabits() {
 		return this.toGigabytes()
-				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, DEFAULT_SCALE,
+						DEFAULT_ROUNDING_MODE);
 	}
 
 	public BigDecimal toTerabits() {
 		return this.toTerabytes()
-				.divide(ByteConverter.eight, 100, BigDecimal.ROUND_HALF_UP);
+				.divide(ByteConverter.eight, DEFAULT_SCALE,
+						DEFAULT_ROUNDING_MODE);
 	}
 
 	// Output as a String
