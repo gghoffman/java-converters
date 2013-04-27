@@ -105,7 +105,45 @@ public abstract class DistanceConverter {
 		return new MetricDistanceConverter(micrometers);
 	}
 
-	// TODO
+	public static DistanceConverter fromMillimeters(double millimeters) {
+		return DistanceConverter.fromMillimeters(new BigDecimal(
+				Double.toString(millimeters)));
+	}
+
+	public static DistanceConverter fromMillimeters(BigDecimal millimeters) {
+		return new MetricDistanceConverter(
+				millimeters.multiply(DistanceConverter.MICROMETERS_IN_A_MILAMETER));
+	}
+
+	public static DistanceConverter fromCentimeters(double centimeters) {
+		return DistanceConverter.fromCentimeters(new BigDecimal(
+				Double.toString(centimeters)));
+	}
+
+	public static DistanceConverter fromCentimeters(BigDecimal centimeters) {
+		return new MetricDistanceConverter(
+				centimeters.multiply(DistanceConverter.MICROMETERS_IN_A_CENTIMETER));
+	}
+
+	public static DistanceConverter fromMeters(double meters) {
+		return DistanceConverter.fromMeters(new BigDecimal(
+				Double.toString(meters)));
+	}
+
+	public static DistanceConverter fromMeters(BigDecimal meters) {
+		return new MetricDistanceConverter(
+				meters.multiply(DistanceConverter.MICROMETERS_IN_A_METER));
+	}
+
+	public static DistanceConverter fromKilometers(double kilometers) {
+		return DistanceConverter.fromKilometers(new BigDecimal(
+				Double.toString(kilometers)));
+	}
+
+	public static DistanceConverter fromKilometers(BigDecimal kilometers) {
+		return new MetricDistanceConverter(
+				kilometers.multiply(DistanceConverter.MICROMETERS_IN_A_KILOMETER));
+	}
 
 	// Imperial static initializers
 
