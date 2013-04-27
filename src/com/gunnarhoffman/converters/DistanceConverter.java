@@ -75,9 +75,25 @@ public abstract class DistanceConverter {
 	// Setters
 
 	/**
+	 * <p>
+	 * Sets the raw unit value in the underlying data source for this class.
+	 * </p>
 	 * 
-	 * @param unit
-	 * @return
+	 * <p>
+	 * This method is final to protect the constructor from undefined behavior
+	 * should this class be extended.
+	 * </p>
+	 * 
+	 * <p>
+	 * In the event a negative number is passed into this function a runtime
+	 * exception of the type InvalidParameterException will be thrown. All
+	 * static methods on this object indirectly call this method and therefor
+	 * can also throw this exception.
+	 * </p>
+	 * 
+	 * @param number
+	 *            The number of units to operate over.
+	 * @return An instance of this class containing the unit number.
 	 */
 	public final DistanceConverter setUnit(BigDecimal unit) {
 		if (unit.signum() == -1) {
@@ -156,7 +172,34 @@ public abstract class DistanceConverter {
 		return new ImperialDistanceConverter(inches);
 	}
 
-	// TODO
+	public static DistanceConverter fromFeet(double feet) {
+		return DistanceConverter.fromFeet(new BigDecimal(Double.toString(feet)));
+	}
+
+	public static DistanceConverter fromFeet(BigDecimal feet) {
+		return new ImperialDistanceConverter(
+				feet.multiply(DistanceConverter.INCHES_IN_A_FOOT));
+	}
+
+	public static DistanceConverter fromYards(double yards) {
+		return DistanceConverter.fromYards(new BigDecimal(
+				Double.toString(yards)));
+	}
+
+	public static DistanceConverter fromYards(BigDecimal yards) {
+		return new ImperialDistanceConverter(
+				yards.multiply(DistanceConverter.INCHES_IN_A_YARD));
+	}
+
+	public static DistanceConverter fromMiles(double miles) {
+		return DistanceConverter.fromMiles(new BigDecimal(
+				Double.toString(miles)));
+	}
+
+	public static DistanceConverter fromMiles(BigDecimal miles) {
+		return new ImperialDistanceConverter(
+				miles.multiply(DistanceConverter.INCHES_IN_A_MILE));
+	}
 
 	// Astronomical static initializers
 
