@@ -5,7 +5,6 @@ import java.security.InvalidParameterException;
 
 import com.gunnarhoffman.converters.concrete.distance.ImperialDistanceConverter;
 import com.gunnarhoffman.converters.concrete.distance.MetricDistanceConverter;
-import com.sun.tools.doclets.formats.html.resources.standard;
 
 /**
  * This class allows for the conversion between three length/distance type
