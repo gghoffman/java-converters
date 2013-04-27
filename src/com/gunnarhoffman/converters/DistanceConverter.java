@@ -3,6 +3,10 @@ package com.gunnarhoffman.converters;
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
 
+import com.gunnarhoffman.converters.concrete.distance.ImperialDistanceConverter;
+import com.gunnarhoffman.converters.concrete.distance.MetricDistanceConverter;
+import com.sun.tools.doclets.formats.html.resources.standard;
+
 /**
  * This class allows for the conversion between three length/distance type
  * systems. Metric, Imperial, and Astronomical. Each system ranges in size
@@ -19,232 +23,55 @@ public abstract class DistanceConverter {
 
 	// Constants
 
-	private static final int DEFAULT_SCALE = 100;
-	private static final int DEFAULT_ROUNDING_MODE = BigDecimal.ROUND_HALF_UP;
+	public static final int DEFAULT_SCALE = 100;
+	public static final int DEFAULT_ROUNDING_MODE = BigDecimal.ROUND_HALF_UP;
 
-	private static final BigDecimal micrometersInAnInch = new BigDecimal(
+	public static final BigDecimal MILLIMETERS_IN_AN_INCH = new BigDecimal(
+			"25.4");
+	public static final BigDecimal CENTAMETERS_IN_AN_INCH = new BigDecimal(
+			"2.54");
+
+	public static final BigDecimal MICROMETERS_IN_AN_INCH = new BigDecimal(
 			"25400");
-	private static final BigDecimal micrometersInAMilimeter = new BigDecimal(
+	public static final BigDecimal MICROMETERS_IN_A_FOOT = new BigDecimal(
+			"304800");
+	public static final BigDecimal MICROMETERS_IN_A_YARD = new BigDecimal(
+			"914400");
+	public static final BigDecimal MICROMETERS_IN_A_MILE = new BigDecimal(
+			"1609344000");
+
+	public static final BigDecimal MICROMETERS_IN_A_MILAMETER = new BigDecimal(
 			"1000");
-	private static final BigDecimal micrometersInACentameter = new BigDecimal(
+	public static final BigDecimal MICROMETERS_IN_A_CENTIMETER = new BigDecimal(
 			"10000");
-	private static final BigDecimal micrometersInAMeter = new BigDecimal(
+	public static final BigDecimal MICROMETERS_IN_A_METER = new BigDecimal(
 			"1000000");
-	private static final BigDecimal micrometersInKilometer = new BigDecimal(
+	public static final BigDecimal MICROMETERS_IN_A_KILOMETER = new BigDecimal(
 			"1000000000");
+
+	public static final BigDecimal MICROMETERS_IN_AN_ASTRONOMICAL_UNIT = new BigDecimal(
+			"149597871000000000");
+	public static final BigDecimal MICROMETERS_IN_A_LIGHT_YEAR = new BigDecimal(
+			"9460528400000000000000");
+	public static final BigDecimal MICROMETERS_IN_A_PARSEC = new BigDecimal(
+			"30856775800000000000000");
+
+	public static final BigDecimal INCHES_IN_A_FOOT = new BigDecimal("12");
+	public static final BigDecimal INCHES_IN_A_YARD = new BigDecimal("36");
+	public static final BigDecimal INCHES_IN_A_MILE = new BigDecimal("63360");
+	public static final BigDecimal INCHES_IN_A_METER = new BigDecimal("39.3701");
+	public static final BigDecimal INCHES_IN_A_KILOMETER = new BigDecimal(
+			"39370.1");
+	public static final BigDecimal INCHES_IN_AN_ASTRONOMICAL_UNIT = new BigDecimal(
+			"5889679950000");
+	public static final BigDecimal INCHES_IN_A_LIGHT_YEAR = new BigDecimal(
+			"372461748000000000");
+	public static final BigDecimal INCHES_IN_A_PARSEC = new BigDecimal(
+			"1214833690000000000");
 
 	// Instance fields
 
 	private BigDecimal unit;
-
-	// Concrete DistanceConverter implementations
-
-	/**
-	 * A concrete implementation of the DistanceConverter class that uses a base
-	 * unit of Micrometers.
-	 * 
-	 * @author Gunnar Hoffman
-	 * 
-	 */
-	public static class MetricDistanceConverter extends DistanceConverter {
-
-		private MetricDistanceConverter(BigDecimal micrometers) {
-			this.setUnit(micrometers);
-		}
-
-		// Metric output
-
-		@Override
-		public BigDecimal toMicrometers() {
-			return this.getUnit();
-		}
-
-		@Override
-		public BigDecimal toMilimeters() {
-			return this.getUnit()
-					.divide(DistanceConverter.micrometersInAMilimeter,
-							DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
-		}
-
-		@Override
-		public BigDecimal toCentimeters() {
-			return this.getUnit()
-					.divide(DistanceConverter.micrometersInACentameter,
-							DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
-		}
-
-		@Override
-		public BigDecimal toMeters() {
-			return this.getUnit()
-					.divide(DistanceConverter.micrometersInAMeter,
-							DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
-		}
-
-		@Override
-		public BigDecimal toKilometers() {
-			return this.getUnit()
-					.divide(DistanceConverter.micrometersInKilometer,
-							DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
-		}
-
-		// Imperial output
-
-		@Override
-		public BigDecimal toInches() {
-			return this.getUnit()
-					.divide(DistanceConverter.micrometersInAnInch,
-							DEFAULT_SCALE, DEFAULT_ROUNDING_MODE);
-		}
-
-		@Override
-		public BigDecimal toFeet() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toYards() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toMiles() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toAstronomicalUnits() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toLightYears() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toParsecs() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		/*
-		 * This method will output as metric units of measure unless it is large
-		 * enough for astronomical.
-		 */
-		@Override
-		public String toString() {
-
-			return null;
-		}
-
-	}
-
-	/**
-	 * A concrete implementation of the DistanceConverter class that uses a base
-	 * unit of Inches.
-	 * 
-	 * @author Gunnar Hoffman
-	 * 
-	 */
-	public static class ImperialDistanceConverter extends DistanceConverter {
-
-		public ImperialDistanceConverter(BigDecimal inches) {
-			this.setUnit(inches);
-		}
-
-		// Metric output
-
-		@Override
-		public BigDecimal toMicrometers() {
-			return this.getUnit()
-					.multiply(DistanceConverter.micrometersInAnInch);
-		}
-
-		@Override
-		public BigDecimal toMilimeters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toCentimeters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toMeters() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toKilometers() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		// Imperial output
-
-		@Override
-		public BigDecimal toInches() {
-			return this.getUnit();
-		}
-
-		@Override
-		public BigDecimal toFeet() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toYards() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toMiles() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toAstronomicalUnits() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toLightYears() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toParsecs() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		// String output
-
-		/*
-		 * This method will output as imperial units of measure unless it is
-		 * large enough for astronomical.
-		 */
-		@Override
-		public String toString() {
-
-			return null;
-		}
-
-	}
 
 	// Setters
 
@@ -270,14 +97,62 @@ public abstract class DistanceConverter {
 
 	// Metric static initializers
 
-	public static DistanceConverter fromMicroMeters(BigDecimal micrometers) {
+	public static DistanceConverter fromMicrometers(long micrometers) {
+		return DistanceConverter.fromMicrometers(new BigDecimal(
+				Long.toString(micrometers)));
+	}
+
+	public static DistanceConverter fromMicrometers(BigDecimal micrometers) {
 		return new MetricDistanceConverter(micrometers);
 	}
 
+	// TODO
+
 	// Imperial static initializers
+
+	public static DistanceConverter fromInches(double inches) {
+		return DistanceConverter.fromInches(new BigDecimal(
+				Double.toString(inches)));
+	}
 
 	public static DistanceConverter fromInches(BigDecimal inches) {
 		return new ImperialDistanceConverter(inches);
+	}
+
+	// TODO
+
+	// Astronomical static initializers
+
+	public static DistanceConverter fromAstronomicalUnits(
+			double astronomicalUnits) {
+		return DistanceConverter.fromAstronomicalUnits(new BigDecimal(
+				Double.toString(astronomicalUnits)));
+	}
+
+	public static DistanceConverter fromAstronomicalUnits(
+			BigDecimal astronomicalUnits) {
+		return new MetricDistanceConverter(
+				DistanceConverter.MICROMETERS_IN_AN_ASTRONOMICAL_UNIT.multiply(astronomicalUnits));
+	}
+
+	public static DistanceConverter fromLightYears(double lightYears) {
+		return DistanceConverter.fromLightYears(new BigDecimal(
+				Double.toString(lightYears)));
+	}
+
+	public static DistanceConverter fromLightYears(BigDecimal lightYears) {
+		return new MetricDistanceConverter(
+				DistanceConverter.MICROMETERS_IN_A_LIGHT_YEAR.multiply(lightYears));
+	}
+
+	public static DistanceConverter fromParsecs(double parsecs) {
+		return DistanceConverter.fromParsecs(new BigDecimal(
+				Double.toString(parsecs)));
+	}
+
+	public static DistanceConverter fromParsecs(BigDecimal parsecs) {
+		return new MetricDistanceConverter(
+				DistanceConverter.MICROMETERS_IN_A_PARSEC.multiply(parsecs));
 	}
 
 	// Metric output

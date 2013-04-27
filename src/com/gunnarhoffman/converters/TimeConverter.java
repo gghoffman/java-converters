@@ -13,23 +13,23 @@ public class TimeConverter {
 
 	// Constants
 
-	private static final BigDecimal microsecondToMillisecond = new BigDecimal(
+	public static final BigDecimal MICROSECONDS_IN_A_MILLISECOND = new BigDecimal(
 			"1000");
-	private static final BigDecimal microsecondToSecond = new BigDecimal(
+	public static final BigDecimal MICROSECONDS_IN_A_SECOND = new BigDecimal(
 			"1000000");
-	private static final BigDecimal microsecondToMinute = new BigDecimal(
+	public static final BigDecimal MICROSECONDS_IN_A_MINUTE = new BigDecimal(
 			"60000000");
-	private static final BigDecimal microsecondToHour = new BigDecimal(
+	public static final BigDecimal MICROSECONDS_IN_AN_HOUR = new BigDecimal(
 			"3600000000");
-	private static final BigDecimal microsecondToDay = new BigDecimal(
+	public static final BigDecimal MICROSECONDS_IN_A_DAY = new BigDecimal(
 			"86400000000");
-	private static final BigDecimal microsecondToWeek = new BigDecimal(
+	public static final BigDecimal MICROSECONDS_IN_A_WEEK = new BigDecimal(
 			"604800000000");
 
 	/**
 	 * Calculated using 365.242 days per year.
 	 */
-	private static final BigDecimal microsecondToYear = new BigDecimal(
+	public static final BigDecimal MICROSECONDS_IN_A_YEAR = new BigDecimal(
 			"31556908800000");
 
 	// Instance fields
@@ -74,7 +74,7 @@ public class TimeConverter {
 	public static TimeConverter fromMilliseconds(BigDecimal milliseconds) {
 
 		BigDecimal calculator = new BigDecimal(milliseconds.toString());
-		calculator = calculator.multiply(TimeConverter.microsecondToMillisecond);
+		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_MILLISECOND);
 		return new TimeConverter(calculator);
 	}
 
@@ -86,7 +86,7 @@ public class TimeConverter {
 	public static TimeConverter fromSeconds(BigDecimal seconds) {
 
 		BigDecimal calculator = new BigDecimal(seconds.toString());
-		calculator = calculator.multiply(TimeConverter.microsecondToSecond);
+		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_SECOND);
 		return new TimeConverter(calculator);
 	}
 
@@ -98,7 +98,7 @@ public class TimeConverter {
 	public static TimeConverter fromMinutes(BigDecimal minutes) {
 
 		BigDecimal calculator = new BigDecimal(minutes.toString());
-		calculator = calculator.multiply(TimeConverter.microsecondToMinute);
+		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_MINUTE);
 		return new TimeConverter(calculator);
 	}
 
@@ -109,7 +109,7 @@ public class TimeConverter {
 	public static TimeConverter fromHours(BigDecimal hours) {
 
 		BigDecimal calculator = new BigDecimal(hours.toString());
-		calculator = calculator.multiply(TimeConverter.microsecondToHour);
+		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_AN_HOUR);
 		return new TimeConverter(calculator);
 	}
 
@@ -120,7 +120,7 @@ public class TimeConverter {
 	public static TimeConverter fromDays(BigDecimal days) {
 
 		BigDecimal calculator = new BigDecimal(days.toString());
-		calculator = calculator.multiply(TimeConverter.microsecondToDay);
+		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_DAY);
 		return new TimeConverter(calculator);
 	}
 
@@ -131,7 +131,7 @@ public class TimeConverter {
 	public static TimeConverter fromWeeks(BigDecimal weeks) {
 
 		BigDecimal calculator = new BigDecimal(weeks.toString());
-		calculator = calculator.multiply(TimeConverter.microsecondToWeek);
+		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_WEEK);
 		return new TimeConverter(calculator);
 	}
 
@@ -142,7 +142,7 @@ public class TimeConverter {
 	public static TimeConverter fromYears(BigDecimal years) {
 
 		BigDecimal calculator = new BigDecimal(years.toString());
-		calculator = calculator.multiply(TimeConverter.microsecondToYear);
+		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_YEAR);
 		return new TimeConverter(calculator);
 	}
 
@@ -153,68 +153,69 @@ public class TimeConverter {
 	}
 
 	public BigDecimal toMilliseconds() {
-		return this.microseconds.divide(TimeConverter.microsecondToMillisecond,
-				100, BigDecimal.ROUND_HALF_UP);
+		return this.microseconds.divide(
+				TimeConverter.MICROSECONDS_IN_A_MILLISECOND, 100,
+				BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toSeconds() {
-		return this.microseconds.divide(TimeConverter.microsecondToSecond, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.microseconds.divide(TimeConverter.MICROSECONDS_IN_A_SECOND,
+				100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toMinutes() {
-		return this.microseconds.divide(TimeConverter.microsecondToMinute, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.microseconds.divide(TimeConverter.MICROSECONDS_IN_A_MINUTE,
+				100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toHours() {
-		return this.microseconds.divide(TimeConverter.microsecondToHour, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.microseconds.divide(TimeConverter.MICROSECONDS_IN_AN_HOUR,
+				100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toDays() {
-		return this.microseconds.divide(TimeConverter.microsecondToDay, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.microseconds.divide(TimeConverter.MICROSECONDS_IN_A_DAY,
+				100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toWeeks() {
-		return this.microseconds.divide(TimeConverter.microsecondToWeek, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.microseconds.divide(TimeConverter.MICROSECONDS_IN_A_WEEK,
+				100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	public BigDecimal toYears() {
-		return this.microseconds.divide(TimeConverter.microsecondToYear, 100,
-				BigDecimal.ROUND_HALF_UP);
+		return this.microseconds.divide(TimeConverter.MICROSECONDS_IN_A_YEAR,
+				100, BigDecimal.ROUND_HALF_UP);
 	}
 
 	@Override
 	public String toString() {
 
-		if (this.microseconds.compareTo(TimeConverter.microsecondToYear) >= 0) {
+		if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_YEAR) >= 0) {
 			return String.format("%.2f Years", this.toYears()
 					.doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.microsecondToWeek) >= 0) {
+		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_WEEK) >= 0) {
 			return String.format("%.2f Weeks", this.toWeeks()
 					.doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.microsecondToDay) >= 0) {
+		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_DAY) >= 0) {
 			return String.format("%.2f Days", this.toDays()
 					.doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.microsecondToHour) >= 0) {
+		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_AN_HOUR) >= 0) {
 			return String.format("%.2f Hours", this.toHours()
 					.doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.microsecondToMinute) >= 0) {
+		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_MINUTE) >= 0) {
 			return String.format("%.2f Minutes", this.toMinutes()
 					.doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.microsecondToSecond) >= 0) {
+		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_SECOND) >= 0) {
 			return String.format("%.2f Seconds", this.toSeconds()
 					.doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.microsecondToMillisecond) >= 0) {
+		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_MILLISECOND) >= 0) {
 			return String.format("%.2f Milliseconds", this.toMicroseconds()
 					.doubleValue());
 
