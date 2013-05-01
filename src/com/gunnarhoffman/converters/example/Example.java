@@ -2,6 +2,8 @@ package com.gunnarhoffman.converters.example;
 
 import com.gunnarhoffman.converters.ByteConverter;
 import com.gunnarhoffman.converters.DistanceConverter;
+import com.gunnarhoffman.converters.SpeedConverter;
+import com.gunnarhoffman.converters.SpeedConverter.TimeIncrement;
 import com.gunnarhoffman.converters.TimeConverter;
 
 public class Example {
@@ -14,5 +16,14 @@ public class Example {
 		System.out.println(TimeConverter.fromWeeks(467));
 
 		System.out.println(DistanceConverter.fromKilometers(460000000));
+
+		System.out.println(SpeedConverter.fromMetersPer(769,
+				TimeIncrement.Second)
+				.toKilometersPer(TimeIncrement.Minute)
+				.floatValue());
+
+		System.out.println(SpeedConverter.fromFeetPer(150, TimeIncrement.Second)
+				.toMilesPer(TimeIncrement.Hour)
+				.floatValue());
 	}
 }
