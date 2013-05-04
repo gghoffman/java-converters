@@ -1,19 +1,46 @@
-java-converters
-===============
+# Java-Converters
 
-This library facilitates the fast and easy conversion between various types of measurement.
+This library facilitates the fast and easy conversion between various types of measurement. No checked exceptions, no dependencies. Works with Java SE6 or newer.
+This repository can be checked out as an Eclipse or an IntelliJ project. Running it will run all the packaged examples. Contributions and feedback are welcome!
 
-No checked exceptions, no dependencies. Works with Java SE6 or newer.
+Conversions supported: 
+- Bytes and Bits
+- Volume
+- Temperature
+- Time
+- Distance
+- Speed
+- Mass
 
-This repository can be checked out as an Eclipse or an IntelliJ project. Running it will run all the packaged examples.
+### As of now this project is incomplete, the following items are done:
 
-Conversions supported: Bytes and Bits, Volume, Temperature, Time, Distance
+- [x] ByteConverter
+- [ ] TemperatureConverter
+- [x] TimeConverter
+- [x] DistanceConverter
+- [ ] SpeedConverter
+- [ ] MassConverter
 
-Examples:
+- [ ] ByteConverter Tests
+- [ ] TemperatureConverter Tests
+- [ ] TimeConverter Tests
+- [ ] DistanceConverter Tests
+- [ ] SpeedConverter Tests
+- [ ] MassConverter Tests
 
+### Examples:
+
+```java
 System.out.println(ByteConverter.fromMegabytes(6000)
 				.addGigabytes(-1.34)
 				.toKilobytes()
 				.floatValue());
-				
-Result: 4738908.0
+```
+
+Result: ``` 4738908.0 ```
+
+
+
+
+
+
