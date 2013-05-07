@@ -19,8 +19,8 @@ public class ByteConverter {
 
 	// Constants
 
-	public static final int DEFAULT_SCALE = 100;
-	public static final int DEFAULT_ROUNDING_MODE = BigDecimal.ROUND_HALF_UP;
+	public static int DEFAULT_SCALE = 100;
+	public static int DEFAULT_ROUNDING_MODE = BigDecimal.ROUND_HALF_UP;
 
 	public static final BigDecimal TEN_TWENTY_FOUR_TO_THE_FOURTH = new BigDecimal(
 			"1099511627776");

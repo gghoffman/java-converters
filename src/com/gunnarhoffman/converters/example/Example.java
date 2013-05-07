@@ -17,10 +17,9 @@ public class Example {
 
 		System.out.println(DistanceConverter.fromKilometers(460000000));
 
-		System.out.println(SpeedConverter.fromMetersPer(769,
+		System.out.println(SpeedConverter.fromMetersPer(299792458.98214981278947129,
 				TimeIncrement.Second)
-				.toKilometersPer(TimeIncrement.Minute)
-				.floatValue());
+				.toMilesPer(TimeIncrement.Second).floatValue());
 
 		System.out.println(SpeedConverter.fromFeetPer(150, TimeIncrement.Second)
 				.toMilesPer(TimeIncrement.Hour)

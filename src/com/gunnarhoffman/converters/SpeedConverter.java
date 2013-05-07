@@ -3,22 +3,42 @@ package com.gunnarhoffman.converters;
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
 
+import com.gunnarhoffman.converters.concrete.speed.ImperialSpeedConverter;
+import com.gunnarhoffman.converters.concrete.speed.MetricSpeedConverter;
+
 /**
+ * This class allows for the conversion of units of speed (distance over time).
+ * Units may be feet, meters, or astronomical units.
  * 
  * @author Gunnar Hoffman
  * 
  */
 public abstract class SpeedConverter {
 
-	public static final int DEFAULT_SCALE = 100;
-	public static final int DEFAULT_ROUNDING_MODE = BigDecimal.ROUND_HALF_UP;
+	public static int DEFAULT_SCALE = 100;
+	public static int DEFAULT_ROUNDING_MODE = BigDecimal.ROUND_HALF_UP;
 
 	public static final BigDecimal METERS_IN_A_KILOMETER = new BigDecimal(
 			"1000");
 	public static final BigDecimal FEET_IN_A_MILE = new BigDecimal("5280");
 	public static final BigDecimal FEET_IN_A_METER = new BigDecimal("3.28084");
 
+	public static final BigDecimal METERS_IN_AN_ASTRONOMICAL_UNIT = new BigDecimal(
+			"149597870700");
+	public static final BigDecimal METERS_IN_A_LIGHT_YEAR = new BigDecimal(
+			"9460528400000000");
+	public static final BigDecimal METERS_IN_A_PARSEC = new BigDecimal(
+			"30856775800000000");
+
+	public static final BigDecimal FEET_IN_AN_ASTRONOMICAL_UNIT = new BigDecimal(
+			"490806662000");
+	public static final BigDecimal FEET_IN_A_LIGHT_YEAR = new BigDecimal(
+			"31038479000000000");
+	public static final BigDecimal FEET_IN_A_PARSEC = new BigDecimal(
+			"101236141000000000");
+
 	/**
+	 * This enumeration contains all the time increments we can convert between.
 	 * 
 	 * @author Gunnar Hoffman
 	 * 
@@ -38,142 +58,8 @@ public abstract class SpeedConverter {
 		}
 	}
 
-	private SpeedConverter(BigDecimal unitsPerSecond) {
+	public SpeedConverter(BigDecimal unitsPerSecond) {
 		this.setUnit(unitsPerSecond);
-	}
-
-	/**
-	 * 
-	 * @author Gunnar Hoffman
-	 * 
-	 */
-	public static class MetricSpeedConverter extends SpeedConverter {
-
-		public MetricSpeedConverter(BigDecimal metersPerSecond) {
-			super(metersPerSecond);
-		}
-
-		@Override
-		public BigDecimal toMetersPer(TimeIncrement increment) {
-			return this.getUnit()
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toFeetPer(TimeIncrement increment) {
-			return this.getUnit()
-					.multiply(SpeedConverter.FEET_IN_A_METER)
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toKilometersPer(TimeIncrement increment) {
-			return this.getUnit()
-					.divide(SpeedConverter.METERS_IN_A_KILOMETER,
-							DEFAULT_SCALE, DEFAULT_ROUNDING_MODE)
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toMilesPer(TimeIncrement increment) {
-			return this.getUnit()
-					.multiply(SpeedConverter.FEET_IN_A_METER)
-					.divide(SpeedConverter.FEET_IN_A_MILE, DEFAULT_SCALE,
-							DEFAULT_ROUNDING_MODE)
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toAstronomicalUnitsPer(TimeIncrement increment) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toLightYearsPer(TimeIncrement increment) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toParsecsPer(TimeIncrement increment) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public String toString() {
-			return ""; // TODO
-		}
-
-	}
-
-	/**
-	 * 
-	 * @author Gunnar Hoffman
-	 * 
-	 */
-	public static class ImperialSpeedConverter extends SpeedConverter {
-
-		public ImperialSpeedConverter(BigDecimal feetPerSecond) {
-			super(feetPerSecond);
-		}
-
-		@Override
-		public BigDecimal toMetersPer(TimeIncrement increment) {
-			return this.getUnit()
-					.divide(SpeedConverter.FEET_IN_A_METER, DEFAULT_SCALE,
-							DEFAULT_ROUNDING_MODE)
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toFeetPer(TimeIncrement increment) {
-			return this.getUnit()
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toKilometersPer(TimeIncrement increment) {
-			return this.getUnit()
-					.divide(SpeedConverter.FEET_IN_A_METER, DEFAULT_SCALE,
-							DEFAULT_ROUNDING_MODE)
-					.divide(SpeedConverter.METERS_IN_A_KILOMETER,
-							DEFAULT_SCALE, DEFAULT_ROUNDING_MODE)
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toMilesPer(TimeIncrement increment) {
-			return this.getUnit()
-					.divide(SpeedConverter.FEET_IN_A_MILE, DEFAULT_SCALE,
-							DEFAULT_ROUNDING_MODE)
-					.multiply(increment.getSeconds());
-		}
-
-		@Override
-		public BigDecimal toAstronomicalUnitsPer(TimeIncrement increment) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toLightYearsPer(TimeIncrement increment) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public BigDecimal toParsecsPer(TimeIncrement increment) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public String toString() {
-			return ""; // TODO
-		}
-
 	}
 
 	private BigDecimal unit;
@@ -270,6 +156,10 @@ public abstract class SpeedConverter {
 				.divide(increment.getSeconds(), DEFAULT_SCALE,
 						DEFAULT_ROUNDING_MODE));
 	}
+
+	// Astronomical static initializers
+
+	// TODO
 
 	public abstract BigDecimal toMetersPer(TimeIncrement increment);
 
