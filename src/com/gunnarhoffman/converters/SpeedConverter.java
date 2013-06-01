@@ -123,9 +123,8 @@ public abstract class SpeedConverter {
 			TimeIncrement increment) {
 
 		return new MetricSpeedConverter(kilometers.multiply(
-				SpeedConverter.METERS_IN_A_KILOMETER)
-				.divide(increment.getSeconds(), DEFAULT_SCALE,
-						DEFAULT_ROUNDING_MODE));
+				SpeedConverter.METERS_IN_A_KILOMETER).divide(
+				increment.getSeconds(), DEFAULT_SCALE, DEFAULT_ROUNDING_MODE));
 	}
 
 	// Imperial static initializers
@@ -152,14 +151,49 @@ public abstract class SpeedConverter {
 			TimeIncrement increment) {
 
 		return new ImperialSpeedConverter(yards.multiply(
-				SpeedConverter.FEET_IN_A_MILE)
-				.divide(increment.getSeconds(), DEFAULT_SCALE,
-						DEFAULT_ROUNDING_MODE));
+				SpeedConverter.FEET_IN_A_MILE).divide(increment.getSeconds(),
+				DEFAULT_SCALE, DEFAULT_ROUNDING_MODE));
 	}
 
 	// Astronomical static initializers
 
-	// TODO
+	public static SpeedConverter fromAstronomicalUnitsPer(
+			double astronomicalUnits, TimeIncrement increment) {
+
+		return SpeedConverter.fromAstronomicalUnitsPer(
+				new BigDecimal(Double.toString(astronomicalUnits)), increment);
+	}
+
+	public static SpeedConverter fromAstronomicalUnitsPer(
+			BigDecimal astronomicalUnits, TimeIncrement increment) {
+
+		return new MetricSpeedConverter(astronomicalUnits.multiply(
+				SpeedConverter.METERS_IN_AN_ASTRONOMICAL_UNIT).divide(
+				increment.getSeconds(), DEFAULT_SCALE, DEFAULT_ROUNDING_MODE));
+	}
+
+	public static SpeedConverter fromLightYearsPer(double lightYears,
+			TimeIncrement increment) {
+
+		return SpeedConverter.fromLightYearsPer(
+				new BigDecimal(Double.toString(lightYears)), increment);
+	}
+
+	public static SpeedConverter fromLightYearsPer(BigDecimal lightYears,
+			TimeIncrement increment) {
+
+		return new MetricSpeedConverter(lightYears.multiply(
+				SpeedConverter.METERS_IN_A_LIGHT_YEAR).divide(
+				increment.getSeconds(), DEFAULT_SCALE, DEFAULT_ROUNDING_MODE));
+	}
+
+	public static SpeedConverter fromParsecsPer(BigDecimal parsecs,
+			TimeIncrement increment) {
+
+		return new MetricSpeedConverter(parsecs.multiply(
+				SpeedConverter.METERS_IN_A_PARSEC).divide(
+				increment.getSeconds(), DEFAULT_SCALE, DEFAULT_ROUNDING_MODE));
+	}
 
 	public abstract BigDecimal toMetersPer(TimeIncrement increment);
 
