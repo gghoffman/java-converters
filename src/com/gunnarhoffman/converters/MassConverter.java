@@ -3,6 +3,12 @@ package com.gunnarhoffman.converters;
 import java.math.BigDecimal;
 import java.security.InvalidParameterException;
 
+/**
+ * This class allows for basic metric mass unit conversion.
+ * 
+ * @author Gunnar Hoffman
+ * 
+ */
 public class MassConverter {
 
 	// Constants.

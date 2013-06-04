@@ -1,1 +1,5 @@
 com.gunnarhoffman.converters
+com.gunnarhoffman.converters.concrete.distance
+com.gunnarhoffman.converters.concrete.speed
+com.gunnarhoffman.converters.example
+com.gunnarhoffman.coverters.tests
