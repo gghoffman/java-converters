@@ -15,11 +15,11 @@ Conversions supported:
 ### As of now this project is incomplete, the following items are done:
 
 - [x] ByteConverter
-- [ ] TemperatureConverter
+- [x] TemperatureConverter
 - [x] TimeConverter
 - [x] DistanceConverter
 - [ ] SpeedConverter
-- [ ] MassConverter
+- [x] MassConverter
 
 - [ ] ByteConverter Tests
 - [ ] TemperatureConverter Tests
