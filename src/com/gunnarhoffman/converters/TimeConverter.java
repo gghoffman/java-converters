@@ -58,8 +58,8 @@ public class TimeConverter {
 	// Initializers
 
 	public static TimeConverter fromMicroseconds(long microseconds) {
-		return TimeConverter.fromMicroseconds(new BigDecimal(
-				Long.toString(microseconds)));
+		return TimeConverter.fromMicroseconds(new BigDecimal(Long
+				.toString(microseconds)));
 	}
 
 	public static TimeConverter fromMicroseconds(BigDecimal microseconds) {
@@ -67,38 +67,41 @@ public class TimeConverter {
 	}
 
 	public static TimeConverter fromMilliseconds(long milliseconds) {
-		return TimeConverter.fromMilliseconds(new BigDecimal(
-				Long.toString(milliseconds)));
+		return TimeConverter.fromMilliseconds(new BigDecimal(Long
+				.toString(milliseconds)));
 	}
 
 	public static TimeConverter fromMilliseconds(BigDecimal milliseconds) {
 
 		BigDecimal calculator = new BigDecimal(milliseconds.toString());
-		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_MILLISECOND);
+		calculator = calculator
+				.multiply(TimeConverter.MICROSECONDS_IN_A_MILLISECOND);
 		return new TimeConverter(calculator);
 	}
 
 	public static TimeConverter fromSeconds(double seconds) {
-		return TimeConverter.fromSeconds(new BigDecimal(
-				Double.toString(seconds)));
+		return TimeConverter.fromSeconds(new BigDecimal(Double
+				.toString(seconds)));
 	}
 
 	public static TimeConverter fromSeconds(BigDecimal seconds) {
 
 		BigDecimal calculator = new BigDecimal(seconds.toString());
-		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_SECOND);
+		calculator = calculator
+				.multiply(TimeConverter.MICROSECONDS_IN_A_SECOND);
 		return new TimeConverter(calculator);
 	}
 
 	public static TimeConverter fromMinutes(double minutes) {
-		return TimeConverter.fromMinutes(new BigDecimal(
-				Double.toString(minutes)));
+		return TimeConverter.fromMinutes(new BigDecimal(Double
+				.toString(minutes)));
 	}
 
 	public static TimeConverter fromMinutes(BigDecimal minutes) {
 
 		BigDecimal calculator = new BigDecimal(minutes.toString());
-		calculator = calculator.multiply(TimeConverter.MICROSECONDS_IN_A_MINUTE);
+		calculator = calculator
+				.multiply(TimeConverter.MICROSECONDS_IN_A_MINUTE);
 		return new TimeConverter(calculator);
 	}
 
@@ -192,35 +195,37 @@ public class TimeConverter {
 	public String toString() {
 
 		if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_YEAR) >= 0) {
-			return String.format("%.2f Years", this.toYears()
-					.doubleValue());
+			return String.format("%.2f Years", this.toYears().doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_WEEK) >= 0) {
-			return String.format("%.2f Weeks", this.toWeeks()
-					.doubleValue());
+		} else if (this.microseconds
+				.compareTo(TimeConverter.MICROSECONDS_IN_A_WEEK) >= 0) {
+			return String.format("%.2f Weeks", this.toWeeks().doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_DAY) >= 0) {
-			return String.format("%.2f Days", this.toDays()
-					.doubleValue());
+		} else if (this.microseconds
+				.compareTo(TimeConverter.MICROSECONDS_IN_A_DAY) >= 0) {
+			return String.format("%.2f Days", this.toDays().doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_AN_HOUR) >= 0) {
-			return String.format("%.2f Hours", this.toHours()
-					.doubleValue());
+		} else if (this.microseconds
+				.compareTo(TimeConverter.MICROSECONDS_IN_AN_HOUR) >= 0) {
+			return String.format("%.2f Hours", this.toHours().doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_MINUTE) >= 0) {
-			return String.format("%.2f Minutes", this.toMinutes()
-					.doubleValue());
+		} else if (this.microseconds
+				.compareTo(TimeConverter.MICROSECONDS_IN_A_MINUTE) >= 0) {
+			return String
+					.format("%.2f Minutes", this.toMinutes().doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_SECOND) >= 0) {
-			return String.format("%.2f Seconds", this.toSeconds()
-					.doubleValue());
+		} else if (this.microseconds
+				.compareTo(TimeConverter.MICROSECONDS_IN_A_SECOND) >= 0) {
+			return String
+					.format("%.2f Seconds", this.toSeconds().doubleValue());
 
-		} else if (this.microseconds.compareTo(TimeConverter.MICROSECONDS_IN_A_MILLISECOND) >= 0) {
-			return String.format("%.2f Milliseconds", this.toMicroseconds()
+		} else if (this.microseconds
+				.compareTo(TimeConverter.MICROSECONDS_IN_A_MILLISECOND) >= 0) {
+			return String.format("%.2f Milliseconds", this.toMilliseconds()
 					.doubleValue());
 
 		} else {
-			return String.format("%l Microseconds", this.toYears()
+			return String.format("%f Microseconds", this.toMicroseconds()
 					.doubleValue());
 		}
 	}
